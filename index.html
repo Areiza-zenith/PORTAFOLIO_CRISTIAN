@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Conecta la hoja de estilos CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portafolio - Cristian Fabian Areiza</title>
+  </head>
+  <body>
+
+    <!-- Barra de navegación: cada enlace salta a la sección con el mismo id -->
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Encabezado principal: foto, nombre y cargo -->
+    <header id="inicio">
+      <!-- alt describe la imagen por si no carga, y ayuda a la accesibilidad -->
+      <img src="https://i.imgur.com/IVjaofY.png" width="180" alt="Foto de Cristian Fabian Areiza">
+      <h1>Cristian Fabian Areiza</h1>
+      <!-- class="subtitulo" permite darle un estilo distinto desde el CSS -->
+      <p class="subtitulo">Ingeniero de Software</p>
+    </header>
+
+    <!-- Sección: Sobre mí -->
+    <section id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p>
+        Estudiante de Ingeniería de Software (7.º semestre) en el Politécnico Grancolombiano
+        y Tecnólogo en Análisis y Desarrollo de Software (ADSO) en el SENA. Cuento con una
+        base sólida en lógica de programación y desarrollo de soluciones tecnológicas,
+        respaldada por una formación técnica previa en operaciones comerciales y financieras.
+      </p>
+      <p>
+        Actualmente trabajo en <strong>Casa Toro SA</strong>, liderando la gestión y
+        conciliación de cuentas de deudores, asegurando la integridad de la información
+        financiera y optimizando los tiempos de respuesta en acuerdos de pago.
+      </p>
+    </section>
+
+    <!-- Sección: Habilidades -->
+    <section id="habilidades">
+      <h2>Habilidades técnicas</h2>
+      <!-- class="lista-skills" convierte esta lista en "píldoras" con el CSS -->
+      <ul class="lista-skills">
+        <li>Java</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>CSS</li>
+        <li>MySQL</li>
+        <li>Angular</li>
+        <li>Django</li>
+        <li>Scrum</li>
+      </ul>
+
+      <h2>Power Skills</h2>
+      <ul class="lista-skills">
+        <li>Resiliencia</li>
+        <li>Pensamiento analítico</li>
+        <li>Comunicación asertiva</li>
+        <li>Trabajo en equipo</li>
+      </ul>
+    </section>
+
+    <!-- Sección: Proyectos -->
+    <section id="proyectos">
+      <h2>Mis proyectos</h2>
+
+      <!-- article representa un bloque de contenido independiente: aquí, un proyecto -->
+      <article class="proyecto">
+        <h3>HANNDYJOB</h3>
+        <p>
+          Aplicación multiplataforma diseñada para conectar trabajadores independientes
+          de la construcción con empleadores. Participé en el modelado de requerimientos,
+          diseño de bases de datos y la implementación de la lógica en el backend/frontend.
+        </p>
+        <!--
+          data-detalle es un atributo personalizado: no se ve en pantalla,
+          solo guarda texto que JavaScript va a leer cuando se haga clic en el botón
+        -->
+        <button class="btn-ver-proyecto" data-detalle="HANNDYJOB fue desarrollado con Java y MySQL, aplicando metodología Scrum en equipo.">
+          Ver detalle
+        </button>
+      </article>
+
+    </section>
+
+    <!-- Sección: Contacto -->
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Correo: Areiza011@gmail.com</p>
+      <p>Teléfono: (57) 310-556-82-77</p>
+    </section>
+
+    <footer>
+      <p>Portafolio personal - 2026</p>
+    </footer>
+
+    <!-- Conecta el archivo de JavaScript. Va al final para que el HTML cargue primero -->
+    <script src="./script.js"></script>
+  </body>
+</html>

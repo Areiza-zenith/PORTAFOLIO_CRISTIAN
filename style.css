@@ -1,0 +1,105 @@
+/* El selector * aplica a TODOS los elementos de la página */
+* {
+  box-sizing: border-box; /* el padding y el borde no aumentan el tamaño real del elemento */
+  font-family: Arial, sans-serif; /* fuente para todo el sitio */
+}
+
+body {
+  margin: 0; /* quita el margen que el navegador pone por defecto */
+  background-color: #0d1117; /* fondo oscuro */
+  color: #e6edf3; /* texto claro, para que se lea bien sobre el fondo oscuro */
+  line-height: 1.6; /* más espacio entre líneas, más fácil de leer */
+}
+
+/* Barra de navegación */
+nav {
+  display: flex; /* pone los enlaces en fila, uno al lado del otro */
+  justify-content: center; /* los centra horizontalmente */
+  gap: 24px; /* espacio entre cada enlace */
+  background-color: #161b22;
+  padding: 16px;
+  position: sticky; /* el menú se queda fijo arriba al hacer scroll */
+  top: 0;
+}
+
+nav a {
+  color: #58a6ff;
+  text-decoration: none; /* quita el subrayado por defecto de los enlaces */
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline; /* subraya el enlace solo cuando el mouse pasa encima */
+}
+
+/* Encabezado principal */
+header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header img {
+  border-radius: 50%; /* convierte la foto cuadrada en un círculo */
+  border: 3px solid #58a6ff; /* marco azul alrededor de la foto */
+}
+
+.subtitulo {
+  color: #8b949e; /* gris más suave que el resto del texto */
+  font-size: 1.1em;
+}
+
+/* Todas las secciones comparten este mismo estilo */
+section {
+  max-width: 700px; /* evita que el texto se estire demasiado en pantallas grandes */
+  margin: 0 auto; /* centra la sección horizontalmente */
+  padding: 30px 20px;
+  border-bottom: 1px solid #30363d; /* línea divisoria entre secciones */
+}
+
+h2 {
+  color: #58a6ff;
+}
+
+/* Lista de habilidades convertida en "píldoras" */
+.lista-skills {
+  list-style: none; /* quita las viñetas normales de la lista */
+  padding: 0;
+  display: flex; /* pone los elementos en fila */
+  flex-wrap: wrap; /* si no caben en una fila, pasan a la siguiente */
+  gap: 10px; /* espacio entre cada píldora */
+}
+
+.lista-skills li {
+  background-color: #21262d;
+  padding: 6px 14px;
+  border-radius: 20px; /* esquinas muy redondeadas = forma de píldora */
+  font-size: 0.9em;
+}
+
+/* Tarjeta de cada proyecto */
+.proyecto {
+  background-color: #161b22;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #238636; /* verde */
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer; /* el mouse se convierte en manito, indicando que se puede hacer clic */
+  font-size: 0.95em;
+}
+
+button:hover {
+  background-color: #2ea043; /* verde más claro al pasar el mouse por encima */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #8b949e;
+}
