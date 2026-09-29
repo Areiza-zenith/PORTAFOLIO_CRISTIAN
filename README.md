@@ -12,7 +12,7 @@ No necesita instalar nada ni un servidor.
 
 También se puede ver en línea: https://areiza-zenith.github.io/PORTAFOLIO_CRISTIAN/
 
-jQuery está incluido en la carpeta `lib/`, así que la página funciona incluso sin internet
+jQuery está incluido en el proyecto (`jquery-3.7.1.min.js`), así que la página funciona incluso sin internet
 (sin internet solo cambia la tipografía por Arial y no carga la foto de perfil).
 
 ## Archivos
@@ -22,7 +22,7 @@ jQuery está incluido en la carpeta `lib/`, así que la página funciona incluso
 | `index.html` | Estructura y contenido de la página |
 | `style.css` | Colores (tema claro y oscuro), distribución y diseño adaptable |
 | `script.js` | Interactividad con jQuery |
-| `lib/jquery-3.7.1.min.js` | Librería jQuery |
+| `jquery-3.7.1.min.js` | Librería jQuery |
 
 ## Mejoras de la versión 2
 
