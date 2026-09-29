@@ -1,106 +1,220 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portafolio de Cristian Fabian Areiza, estudiante de Ingeniería de Software." />
+    <title>Portafolio - Cristian Fabian Areiza</title>
+    <!-- Tipografía (si no hay internet se usa la fuente de respaldo definida en el CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap" />
     <!-- Conecta la hoja de estilos CSS -->
     <link rel="stylesheet" href="./style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portafolio - Cristian Fabian Areiza</title>
   </head>
   <body>
 
-    <!-- Barra de navegación: cada enlace salta a la sección con el mismo id -->
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#habilidades">Habilidades</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#contacto">Contacto</a>
+    <!-- MEJORA: enlace para saltar al contenido (accesibilidad con teclado) -->
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <!-- Barra de navegación -->
+    <nav id="menu" aria-label="Navegación principal">
+      <a class="marca" href="#inicio">CFA</a>
+
+      <!-- MEJORA: botón hamburguesa, solo se ve en pantallas pequeñas -->
+      <button id="btn-menu" class="btn-icono" aria-expanded="false" aria-controls="enlaces" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div id="enlaces" class="enlaces">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+
+      <!-- MEJORA: botón para cambiar entre modo oscuro y modo claro -->
+      <button id="btn-tema" class="btn-icono" aria-label="Cambiar a modo claro" title="Cambiar tema">
+        <span class="icono-tema" aria-hidden="true">☀</span>
+      </button>
     </nav>
 
-    <!-- Encabezado principal: foto, nombre y cargo -->
-    <header id="inicio">
-      <!-- alt describe la imagen por si no carga, y ayuda a la accesibilidad -->
-      <img src="https://i.imgur.com/IVjaofY.png" width="180" alt="Foto de Cristian Fabian Areiza">
-      <h1>Cristian Fabian Areiza</h1>
-      <!-- class="subtitulo" permite darle un estilo distinto desde el CSS -->
-      <p class="subtitulo">Ingeniero de Software</p>
-    </header>
+    <main id="contenido">
+      <!-- Encabezado principal: foto, nombre y cargo -->
+      <header id="inicio">
+        <img src="https://i.imgur.com/IVjaofY.png" width="180" height="180" alt="Foto de Cristian Fabian Areiza">
+        <h1>Cristian Fabian Areiza</h1>
+        <p class="subtitulo">Ingeniero de Software</p>
+        <!-- MEJORA: accesos directos a lo más importante -->
+        <div class="acciones">
+          <a class="btn" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-secundario" href="#contacto">Escribirme</a>
+        </div>
+      </header>
 
-    <!-- Sección: Sobre mí -->
-    <section id="sobre-mi">
-      <h2>Sobre mí</h2>
-      <p>
-        Estudiante de Ingeniería de Software (8.º semestre) en el Politécnico Grancolombiano
-        y Tecnólogo en Análisis y Desarrollo de Software (ADSO) en el SENA. Cuento con una
-        base sólida en lógica de programación y desarrollo de soluciones tecnológicas,
-        respaldada por una formación técnica previa en operaciones comerciales y financieras.
-      </p>
-      <p>
-        Actualmente trabajo en <strong>Casa Toro SA</strong>, liderando la gestión y
-        conciliación de cuentas de deudores, asegurando la integridad de la información
-        financiera y optimizando los tiempos de respuesta en acuerdos de pago.
-      </p>
-    </section>
-
-    <!-- Sección: Habilidades -->
-    <section id="habilidades">
-      <h2>Habilidades técnicas</h2>
-      <!-- class="lista-skills" convierte esta lista en "píldoras" con el CSS -->
-      <ul class="lista-skills">
-        <li>Java</li>
-        <li>JavaScript</li>
-        <li>Python</li>
-        <li>CSS</li>
-        <li>MySQL</li>
-        <li>Angular</li>
-        <li>Django</li>
-        <li>Scrum</li>
-      </ul>
-
-      <h2>Power Skills</h2>
-      <ul class="lista-skills">
-        <li>Resiliencia</li>
-        <li>Pensamiento analítico</li>
-        <li>Comunicación asertiva</li>
-        <li>Trabajo en equipo</li>
-      </ul>
-    </section>
-
-    <!-- Sección: Proyectos -->
-    <section id="proyectos">
-      <h2>Mis proyectos</h2>
-
-      <!-- article representa un bloque de contenido independiente: aquí, un proyecto -->
-      <article class="proyecto">
-        <h3>HANNDYJOB</h3>
+      <!-- Sección: Sobre mí -->
+      <section id="sobre-mi">
+        <h2>Sobre mí</h2>
         <p>
-          Aplicación multiplataforma diseñada para conectar trabajadores independientes
-          de la construcción con empleadores. Participé en el modelado de requerimientos,
-          diseño de bases de datos y la implementación de la lógica en el backend/frontend.
+          Estudiante de Ingeniería de Software (8.º semestre) en el Politécnico Grancolombiano
+          y Tecnólogo en Análisis y Desarrollo de Software (ADSO) en el SENA. Cuento con una
+          base sólida en lógica de programación y desarrollo de soluciones tecnológicas,
+          respaldada por una formación técnica previa en operaciones comerciales y financieras.
         </p>
+        <p>
+          Actualmente trabajo en <strong>Casa Toro SA</strong>, liderando la gestión y
+          conciliación de cuentas de deudores, asegurando la integridad de la información
+          financiera y optimizando los tiempos de respuesta en acuerdos de pago.
+        </p>
+      </section>
+
+      <!-- Sección: Habilidades -->
+      <section id="habilidades">
+        <h2>Habilidades técnicas</h2>
+        <ul class="lista-skills">
+          <li>Java</li>
+          <li>JavaScript</li>
+          <li>jQuery</li>
+          <li>Python</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>MySQL</li>
+          <li>Angular</li>
+          <li>Django</li>
+          <li>Scrum</li>
+        </ul>
+
+        <h2>Power Skills</h2>
+        <ul class="lista-skills">
+          <li>Resiliencia</li>
+          <li>Pensamiento analítico</li>
+          <li>Comunicación asertiva</li>
+          <li>Trabajo en equipo</li>
+        </ul>
+      </section>
+
+      <!-- Sección: Proyectos -->
+      <section id="proyectos">
+        <h2>Mis proyectos</h2>
+
+        <!-- MEJORA: filtro de proyectos. data-filtro indica qué tecnología muestra cada botón -->
+        <div class="filtros" role="group" aria-label="Filtrar proyectos por tecnología">
+          <button class="filtro activo" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button class="filtro" data-filtro="java" aria-pressed="false">Java</button>
+          <button class="filtro" data-filtro="javascript" aria-pressed="false">JavaScript</button>
+          <button class="filtro" data-filtro="web" aria-pressed="false">HTML y CSS</button>
+        </div>
+
         <!--
-          data-detalle es un atributo personalizado: no se ve en pantalla,
-          solo guarda texto que JavaScript va a leer cuando se haga clic en el botón
+          data-tags: tecnologías del proyecto (las usa el filtro)
+          data-titulo, data-detalle, data-enlace: textos que JavaScript muestra en la ventana modal
         -->
-        <button class="btn-ver-proyecto" data-detalle="HANNDYJOB fue desarrollado con Java y MySQL, aplicando metodología Scrum en equipo.">
-          Ver detalle
-        </button>
-      </article>
+        <div class="grid-proyectos">
+          <article class="proyecto" data-tags="java">
+            <h3>HANNDYJOB</h3>
+            <p>
+              Aplicación multiplataforma que conecta trabajadores independientes de la
+              construcción con empleadores. Participé en el modelado de requerimientos,
+              el diseño de la base de datos y la lógica del backend y frontend.
+            </p>
+            <ul class="etiquetas"><li>Java</li><li>MySQL</li><li>Scrum</li></ul>
+            <button class="btn-ver-proyecto"
+              data-titulo="HANNDYJOB"
+              data-detalle="HANNDYJOB fue desarrollado con Java y MySQL, aplicando metodología Scrum en equipo. Mi aporte incluyó el levantamiento de requerimientos, el modelo entidad-relación y la implementación de módulos del backend y del frontend.">
+              Ver detalle
+            </button>
+          </article>
 
-    </section>
+          <article class="proyecto" data-tags="javascript web">
+            <h3>Ventas POLI web</h3>
+            <p>
+              Versión en el navegador de un sistema de ventas: resumen con totales, ranking de
+              vendedores, tablas con búsqueda en vivo y descarga de reportes en .txt.
+            </p>
+            <ul class="etiquetas"><li>JavaScript</li><li>jQuery</li><li>HTML y CSS</li></ul>
+            <button class="btn-ver-proyecto"
+              data-titulo="Ventas POLI web"
+              data-detalle="Reemplaza el uso de consola por una interfaz web. Los datos se generan de forma pseudoaleatoria con JavaScript y jQuery se encarga de llenar las tablas, filtrar y ordenar la información."
+              data-enlace="https://areiza-zenith.github.io/ProyectoVentasPOLI-web/">
+              Ver detalle
+            </button>
+          </article>
 
-    <!-- Sección: Contacto -->
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Correo: Areiza011@gmail.com</p>
-      <p>Teléfono: (57) 310-556-82-77</p>
-    </section>
+          <article class="proyecto" data-tags="javascript web">
+            <h3>Portafolio personal</h3>
+            <p>
+              Este mismo sitio: una página con navegación interna, modo claro y oscuro,
+              filtro de proyectos y formulario de contacto validado.
+            </p>
+            <ul class="etiquetas"><li>HTML</li><li>CSS</li><li>jQuery</li></ul>
+            <button class="btn-ver-proyecto"
+              data-titulo="Portafolio personal"
+              data-detalle="La primera versión usaba HTML, CSS y JavaScript puro con un mensaje alert(). En la segunda versión se agregaron jQuery, diseño adaptable a celulares, cambio de tema, filtros, ventana modal y validación de formularios."
+              data-enlace="https://github.com/Areiza-zenith/PORTAFOLIO_CRISTIAN">
+              Ver detalle
+            </button>
+          </article>
+        </div>
+
+        <!-- Mensaje que aparece si un filtro no tiene proyectos -->
+        <p id="sin-resultados" class="sin-resultados" hidden>No hay proyectos con esa tecnología todavía.</p>
+      </section>
+
+      <!-- Sección: Contacto -->
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <p>
+          Correo: <a href="mailto:Areiza011@gmail.com" id="correo">Areiza011@gmail.com</a>
+          <!-- MEJORA: copiar el correo con un clic -->
+          <button id="btn-copiar" class="btn-mini" type="button">Copiar</button>
+        </p>
+        <p>Teléfono: <a href="tel:+573105568277">(57) 310-556-82-77</a></p>
+
+        <!-- MEJORA: formulario con validación en tiempo real (novalidate: la validación la hace jQuery) -->
+        <form id="form-contacto" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name" required minlength="3">
+            <small class="error" id="error-nombre"></small>
+          </div>
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <small class="error" id="error-email"></small>
+          </div>
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required minlength="10" maxlength="500"></textarea>
+            <small class="contador"><span id="contador">0</span>/500</small>
+            <small class="error" id="error-mensaje"></small>
+          </div>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </section>
+    </main>
 
     <footer>
       <p>Portafolio personal - 2026</p>
     </footer>
 
+    <!-- MEJORA: botón para volver al inicio de la página -->
+    <button id="btn-arriba" class="btn-arriba" aria-label="Volver arriba" hidden>↑</button>
+
+    <!-- MEJORA: ventana modal que reemplaza al alert() de la versión 1 -->
+    <div id="modal" class="modal" hidden>
+      <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+        <button class="modal-cerrar btn-icono" aria-label="Cerrar">✕</button>
+        <h3 id="modal-titulo"></h3>
+        <p id="modal-texto"></p>
+        <a id="modal-enlace" class="btn" href="#" target="_blank" rel="noopener" hidden>Abrir proyecto</a>
+      </div>
+    </div>
+
+    <!-- Aviso corto (toast) para confirmar acciones -->
+    <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+
+    <!-- jQuery se incluye en la carpeta lib para que funcione incluso sin internet -->
+    <script src="./lib/jquery-3.7.1.min.js"></script>
     <!-- Conecta el archivo de JavaScript. Va al final para que el HTML cargue primero -->
     <script src="./script.js"></script>
   </body>

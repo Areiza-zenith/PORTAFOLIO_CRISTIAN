@@ -1,105 +1,434 @@
+/* =========================================================
+   VARIABLES DE COLOR (MEJORA: tema oscuro y tema claro)
+   Los colores se definen una sola vez y se reutilizan.
+   Cambiar data-theme en <html> cambia todo el sitio.
+   ========================================================= */
+:root,
+[data-theme="dark"] {
+  --fondo: #0d1117;
+  --superficie: #161b22;
+  --superficie-2: #21262d;
+  --borde: #30363d;
+  --texto: #e6edf3;
+  --texto-suave: #8b949e;
+  --acento: #58a6ff;
+  --verde: #238636;
+  --verde-hover: #2ea043;
+  --error: #f85149;
+}
+
+[data-theme="light"] {
+  --fondo: #f6f8fa;
+  --superficie: #ffffff;
+  --superficie-2: #eaeef2;
+  --borde: #d0d7de;
+  --texto: #1f2328;
+  --texto-suave: #57606a;
+  --acento: #0969da;
+  --verde: #1f883d;
+  --verde-hover: #1a7f37;
+  --error: #cf222e;
+}
+
 /* El selector * aplica a TODOS los elementos de la página */
 * {
   box-sizing: border-box; /* el padding y el borde no aumentan el tamaño real del elemento */
-  font-family: Arial, sans-serif; /* fuente para todo el sitio */
+}
+
+/* El atributo hidden siempre oculta, aunque otra regla diga lo contrario */
+[hidden] { display: none !important; }
+
+html {
+  scroll-behavior: smooth; /* MEJORA: desplazamiento suave al usar el menú */
+  scroll-padding-top: 72px; /* evita que el menú fijo tape el título de la sección */
 }
 
 body {
-  margin: 0; /* quita el margen que el navegador pone por defecto */
-  background-color: #0d1117; /* fondo oscuro */
-  color: #e6edf3; /* texto claro, para que se lea bien sobre el fondo oscuro */
-  line-height: 1.6; /* más espacio entre líneas, más fácil de leer */
+  margin: 0;
+  font-family: "Figtree", Arial, sans-serif; /* si Figtree no carga se usa Arial */
+  background-color: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+  transition: background-color 0.25s, color 0.25s; /* transición suave al cambiar de tema */
 }
 
-/* Barra de navegación */
+a { color: var(--acento); }
+
+/* Enlace "Saltar al contenido": oculto hasta que recibe el foco con Tab */
+.saltar {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--acento);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  z-index: 100;
+}
+.saltar:focus { left: 8px; }
+
+/* MEJORA: foco visible para quien navega con teclado */
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   BARRA DE NAVEGACIÓN
+   ========================================================= */
 nav {
-  display: flex; /* pone los enlaces en fila, uno al lado del otro */
-  justify-content: center; /* los centra horizontalmente */
-  gap: 24px; /* espacio entre cada enlace */
-  background-color: #161b22;
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+  padding: 10px 20px;
   position: sticky; /* el menú se queda fijo arriba al hacer scroll */
   top: 0;
+  z-index: 10;
 }
 
-nav a {
-  color: #58a6ff;
-  text-decoration: none; /* quita el subrayado por defecto de los enlaces */
-  font-weight: bold;
+.marca {
+  font-weight: 800;
+  font-size: 1.2em;
+  text-decoration: none;
+  letter-spacing: 0.04em;
 }
 
-nav a:hover {
-  text-decoration: underline; /* subraya el enlace solo cuando el mouse pasa encima */
+.enlaces {
+  display: flex;
+  gap: 24px;
 }
 
-/* Encabezado principal */
+.enlaces a {
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.enlaces a:hover { color: var(--texto); }
+
+/* MEJORA: el enlace de la sección visible queda resaltado (clase que pone jQuery) */
+.enlaces a.activo {
+  color: var(--acento);
+  border-bottom-color: var(--acento);
+}
+
+/* Botones pequeños de solo ícono (menú, tema, cerrar) */
+.btn-icono {
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icono:hover { background: var(--superficie-2); }
+
+/* El botón hamburguesa está oculto en computador */
+#btn-menu { display: none; flex-direction: column; gap: 4px; }
+#btn-menu span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--texto);
+}
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
 header {
   text-align: center;
-  padding: 40px 20px;
+  padding: 56px 20px 40px;
 }
 
 header img {
   border-radius: 50%; /* convierte la foto cuadrada en un círculo */
-  border: 3px solid #58a6ff; /* marco azul alrededor de la foto */
+  border: 3px solid var(--acento);
+  object-fit: cover;
+  background: var(--superficie-2);
+}
+
+h1 {
+  font-size: clamp(2em, 6vw, 3em);
+  line-height: 1.1;
+  margin: 20px 0 6px;
 }
 
 .subtitulo {
-  color: #8b949e; /* gris más suave que el resto del texto */
-  font-size: 1.1em;
+  color: var(--texto-suave);
+  font-size: 1.15em;
+  margin: 0;
 }
 
-/* Todas las secciones comparten este mismo estilo */
+.acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* =========================================================
+   SECCIONES
+   ========================================================= */
 section {
-  max-width: 700px; /* evita que el texto se estire demasiado en pantallas grandes */
-  margin: 0 auto; /* centra la sección horizontalmente */
-  padding: 30px 20px;
-  border-bottom: 1px solid #30363d; /* línea divisoria entre secciones */
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  border-bottom: 1px solid var(--borde);
 }
 
-h2 {
-  color: #58a6ff;
-}
+h2 { color: var(--acento); }
 
 /* Lista de habilidades convertida en "píldoras" */
 .lista-skills {
-  list-style: none; /* quita las viñetas normales de la lista */
+  list-style: none;
   padding: 0;
-  display: flex; /* pone los elementos en fila */
-  flex-wrap: wrap; /* si no caben en una fila, pasan a la siguiente */
-  gap: 10px; /* espacio entre cada píldora */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .lista-skills li {
-  background-color: #21262d;
+  background-color: var(--superficie-2);
   padding: 6px 14px;
-  border-radius: 20px; /* esquinas muy redondeadas = forma de píldora */
+  border-radius: 20px;
   font-size: 0.9em;
 }
 
-/* Tarjeta de cada proyecto */
-.proyecto {
-  background-color: #161b22;
-  padding: 20px;
-  border-radius: 10px;
+/* =========================================================
+   PROYECTOS (MEJORA: cuadrícula adaptable + filtros)
+   ========================================================= */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
-button {
-  background-color: #238636; /* verde */
-  color: white;
+.filtro {
+  background: transparent;
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  padding: 6px 16px;
+}
+.filtro:hover { background: var(--superficie-2); color: var(--texto); }
+.filtro.activo {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+/* auto-fill + minmax: en celular 1 columna, en computador 2 o más */
+.grid-proyectos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.proyecto {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.proyecto h3 { margin-top: 0; }
+.proyecto p { flex: 1; color: var(--texto-suave); }
+.proyecto button { align-self: flex-start; }
+
+.etiquetas {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.8em;
+  color: var(--acento);
+}
+.etiquetas li {
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 1px 8px;
+}
+
+.sin-resultados { color: var(--texto-suave); font-style: italic; }
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+button,
+.btn {
+  background-color: var(--verde);
+  color: #fff;
   border: none;
   padding: 10px 18px;
   border-radius: 6px;
-  cursor: pointer; /* el mouse se convierte en manito, indicando que se puede hacer clic */
+  cursor: pointer;
+  font: inherit;
   font-size: 0.95em;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
 }
 
-button:hover {
-  background-color: #2ea043; /* verde más claro al pasar el mouse por encima */
+button:hover,
+.btn:hover { background-color: var(--verde-hover); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borde);
+}
+.btn-secundario:hover { background: var(--superficie-2); }
+
+.btn-mini {
+  padding: 2px 10px;
+  font-size: 0.8em;
+  margin-left: 8px;
+  background: var(--superficie-2);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+}
+.btn-mini:hover { background: var(--borde); }
+
+/* =========================================================
+   FORMULARIO DE CONTACTO (MEJORA)
+   ========================================================= */
+form {
+  margin-top: 24px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.campo { display: grid; gap: 4px; }
+
+label { font-weight: 600; font-size: 0.95em; }
+
+input,
+textarea {
+  font: inherit;
+  color: var(--texto);
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 10px 12px;
+  width: 100%;
+}
+textarea { resize: vertical; }
+
+/* Clases que agrega jQuery según el resultado de la validación */
+.campo.invalido input,
+.campo.invalido textarea { border-color: var(--error); }
+.campo.valido input,
+.campo.valido textarea { border-color: var(--verde); }
+
+.error { color: var(--error); min-height: 1.2em; }
+.contador { color: var(--texto-suave); justify-self: end; }
+
+form button { justify-self: start; }
+
+/* =========================================================
+   MODAL (reemplaza el alert de la versión 1)
+   ========================================================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(1, 4, 9, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal-caja {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+}
+.modal-caja h3 { margin-top: 0; padding-right: 40px; }
+.modal-cerrar { position: absolute; top: 14px; right: 14px; }
+
+/* =========================================================
+   BOTÓN VOLVER ARRIBA Y AVISO
+   ========================================================= */
+.btn-arriba {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 1.2em;
+  z-index: 20;
+}
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: var(--texto);
+  color: var(--fondo);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: none;
+  z-index: 60;
 }
 
 footer {
   text-align: center;
-  padding: 20px;
-  color: #8b949e;
+  padding: 24px;
+  color: var(--texto-suave);
+}
+
+/* =========================================================
+   DISEÑO ADAPTABLE (MEJORA): pantallas menores a 700px
+   ========================================================= */
+@media (max-width: 700px) {
+  #btn-menu { display: inline-flex; order: 2; }
+  #btn-tema { order: 3; }
+  .marca { order: 1; margin-right: auto; }
+
+  /* El menú se convierte en una lista vertical desplegable */
+  .enlaces {
+    order: 4;
+    display: none; /* jQuery lo muestra con slideToggle */
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+  nav { flex-wrap: wrap; }
+  .enlaces a { display: block; padding: 12px 4px; border-bottom: 1px solid var(--borde); }
+  .enlaces a.activo { border-bottom-color: var(--acento); }
+}
+
+/* Si la persona prefiere menos movimiento, se desactivan animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }
